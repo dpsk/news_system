@@ -10,7 +10,11 @@ NewsSystem::Application.routes.draw do
   #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
   # This route can be invoked with purchase_url(:id => product.id)
 
-  resources :posts
+  resources :posts do
+    collection do
+      put 'publish'
+    end
+  end
   # Sample resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
 

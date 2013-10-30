@@ -2,6 +2,8 @@
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
 </div>
+
+<%= form_tag publish_posts_path, method: :put do %>
 <table class="table table-striped">
   <thead>
     <tr>
@@ -17,8 +19,9 @@
     <% @posts.each do |post| %>
       <tr>
         <td><%= link_to post.id, post_path(post) %></td>
-        <td><%= post.published %></td>
-        <td><%= post.link %></td>
+        <td>
+          <%= check_box_tag "post_ids[]", post.id, post.published %>
+        </td>
         <% if post.body.length > 30 %>
           <td><%= raw truncate(post.body) %>&nbsp;<%= link_to 'Read more...', post_path(post) %></td>
         <% else %>
@@ -35,10 +38,13 @@
                       :class => 'btn btn-mini btn-danger' %>
         </td>
       </tr>
-    <% end %>
+  <% end %>
   </tbody>
 </table>
 
 <%= link_to t('.new', :default => t("helpers.links.new")),
             new_post_path,
             :class => 'btn btn-primary' %>
+
+<%= submit_tag "Marked as publish" %>
+<% end %>

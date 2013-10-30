@@ -3,7 +3,8 @@ class PostsController < ApplicationController
   before_filter :check_if_admin, only: [:new, :edit, :update, :destroy]
 
   def index
-    @posts = Post.where(published: true)
+    # @posts = Post.where(published: true)
+    @posts = Post.all
 
     # render text: @posts.map { |p| "#{p.id} | #{p.body}" }.join("<br/>")
   end
@@ -41,10 +42,14 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @post.update_attributes(params[:post])
 
-    if @post.errors.empty?
-      redirect_to post_path(@post)
-    else
-      render "edit"
+    respond_to do |format|
+      if @post.errors.empty?
+        format.html { redirect_to post_path(@post) }
+        format.js   { render nothing: true }
+      else
+        format.html { render "edit" }
+        format.js   {  }
+      end
     end
   end
 
@@ -52,6 +57,14 @@ class PostsController < ApplicationController
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
+
+    redirect_to posts_path
+  end
+
+  def publish
+    ids = [*params[:post_ids]]
+    Post.update_all({ published: true }, { id: ids })
+    Post.update_all({ published: false }, "posts.id NOT IN (#{ ids.join(',') })")
 
     redirect_to posts_path
   end

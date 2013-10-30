@@ -1,6 +1,6 @@
 <%= tinymce_assets %>
 
-<%= form_for @post, :html => { :class => 'form-horizontal' } do |f| %>
+<%= simple_form_for @post, :html => { :id => 'posts' } do |f| %>
   <% if @post.errors.any? %>
     <div id="errorExplanation">
       <h4><%= pluralize(@post.errors.count, "error") %> prohibited
