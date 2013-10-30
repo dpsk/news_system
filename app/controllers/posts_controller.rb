@@ -65,8 +65,12 @@ class PostsController < ApplicationController
     ids = [*params[:post_ids]]
     Post.update_all({ published: true }, { id: ids })
     Post.update_all({ published: false }, "posts.id NOT IN (#{ ids.join(',') })")
+    #flash[:success] = "Attribute 'published' was updated successfully in posts"
 
-    redirect_to posts_path
+    respond_to do |format|
+      format.html { redirect_to posts_path }
+      format.json { head :no_content }
+    end
   end
 
   private
