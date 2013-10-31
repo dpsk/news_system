@@ -25,9 +25,10 @@ group :assets do
 end
 
 gem 'jquery-rails'
-
 gem 'tinymce-rails'
-
+gem 'tinymce-rails-imageupload'
+gem 'rack-cache', require: 'rack/cache'
+gem 'dragonfly', '~> 0.9.14'
 gem 'simple_form'
 
 # To use ActiveModel has_secure_password

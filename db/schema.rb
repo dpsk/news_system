@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131010163338) do
+ActiveRecord::Schema.define(:version => 20131031162702) do
 
   create_table "posts", :force => true do |t|
     t.boolean  "published",  :default => false
@@ -19,6 +19,11 @@ ActiveRecord::Schema.define(:version => 20131010163338) do
     t.text     "body"
     t.datetime "created_at",                    :null => false
     t.datetime "updated_at",                    :null => false
+  end
+
+  create_table "static_images", :force => true do |t|
+    t.string "page_image_uid"
+    t.string "page_image_name"
   end
 
 end

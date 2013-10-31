@@ -1,4 +1,7 @@
 NewsSystem::Application.routes.draw do
+
+  get "tinymce_assets/create"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -15,6 +18,8 @@ NewsSystem::Application.routes.draw do
       put 'publish'
     end
   end
+
+  post '/tinymce_assets' => 'tinymce_assets#create'
   # Sample resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
 

@@ -38,6 +38,9 @@ GEM
       execjs
     coffee-script-source (1.6.3)
     commonjs (0.2.7)
+    dragonfly (0.9.15)
+      multi_json (~> 1.0)
+      rack
     erubis (2.7.0)
     execjs (2.0.2)
     hike (1.2.3)
@@ -106,6 +109,9 @@ GEM
     tilt (1.4.1)
     tinymce-rails (4.0.7)
       railties (>= 3.1.1)
+    tinymce-rails-imageupload (3.5.8.3)
+      railties (>= 3.1)
+      tinymce-rails (>= 3.4.9)
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
@@ -124,13 +130,16 @@ PLATFORMS
 
 DEPENDENCIES
   coffee-rails (~> 3.2.1)
+  dragonfly (~> 0.9.14)
   jquery-rails
   less-rails
+  rack-cache
   rails (= 3.2.13)
   sass-rails (~> 3.2.3)
   simple_form
   sqlite3
   therubyracer
   tinymce-rails
+  tinymce-rails-imageupload
   twitter-bootstrap-rails
   uglifier (>= 1.0.3)
